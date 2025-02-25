@@ -1,0 +1,46 @@
+version: 2
+ 
+models:
+  - name: stg_customers
+    description: "{{doc('stg_customers_desc')}}"
+    columns:
+      - name: customerid
+        description: "{{doc('stg_customerid_desc')}}"
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_products
+    description: "{{doc('stg_products_desc')}}"
+    columns:
+      - name: productid
+        description: "{{doc('stg_productid_desc')}}"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_shipments
+    columns:
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['shipped','returned','ordered','replaced']
+                      
+  - name: stg_orderdetails
+    description: shipments data for orders loaded for raw shipment 
+    columns:
+      - name: orderid
+        tests:
+          - relationships:
+              to: ref('stg_orders')
+              field: orderid
+              
+  - name: stg_employees
+    description: employees unique and id even validation 
+    columns:
+      - name: empid
+        tests:
+          - unique
+          - not_null
+          #- is_even
+
