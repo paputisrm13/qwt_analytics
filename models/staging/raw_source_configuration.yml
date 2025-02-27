@@ -10,7 +10,7 @@ sources:
       - name: raw_orders
       - name: raw_orderdetails
       - name: raw_employees
-      - name: raw_office
+      - name: raw_offices
       - name: raw_shipments
       - name: raw_suppliers
             
